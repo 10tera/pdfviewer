@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Viewer</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <h1 class="tool-header-title">結合後のPDF</h1>
+    <p style="text-align: center">
+        <a id="aftermergefile-download" class="mergedfile-download">ダウンロード</a>
+    </p>
+    <div id="after-merge-div" class="aftermerge-preview"></div>
+    <script src="../js/render.js"></script>
+    <script>
+        const testfunc=function (){
+            alert("aaa");
+        };
+        const pdfview_func=function (){
+            changewindow(1);
+        };
+        const pdfadd_func=function (){
+            changewindow(2);
+        };
+        const downloadbutton=document.getElementById("aftermergefile-download");
+        downloadbutton.addEventListener("click",(e)=>{
+            downloadfiles();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Viewer</title>
+    <link rel="stylesheet" href="../css/main.css">
+
+</head>
+<body>
+    <div class="tool-header">
+        <h1 class="tool-header-title">PDF 結合</h1>
+        <h2 class="tool-header-description">PDFを指定するとボタン一つで結合できます！</h2>
+    </div>
+    <div class="file-drop-area" id="drop-zone">
+        <label class="inputfile-label">
+            <input type="file" name="file" id="file-input" accept="application/pdf" multiple="multiple">ファイルを選択
+        </label>
+    </div>
+    <br>
+    <div class="file-preview" id="file-preview">
+
+    </div>
+    <input type="text" id="newpdfsname" class="input-newname">
+    <button type="button" id="join-pdf-button" class="join-button">結合して保存</button>
+    <script src="../js/render.js"></script>
+    <script>
+        const testfunc=function (){
+            alert("aaa");
+        };
+        const pdfview_func=function (){
+            changewindow(1);
+        };
+        const pdfadd_func=function (){
+            changewindow(2);
+        };
+        var droparea=document.getElementById("drop-zone");
+        var previewarea=document.getElementById("file-preview");
+        var fileinputbutton=document.getElementById("file-input");
+        var joinpdfbutton=document.getElementById("join-pdf-button");
+
+        joinpdfbutton.addEventListener("click",(e)=>{
+            datasend_beforemerge();
+        });
+
+        droparea.addEventListener("dragover",function(e){
+            e.stopPropagation();
+            e.preventDefault();
+            this.style.background="#95a5a6";
+        },false);
+
+        droparea.addEventListener("dragleave",function(e){
+            e.stopPropagation();
+            e.preventDefault();
+            this.style.background="#ffffff";
+        },false);
+
+        fileinputbutton.addEventListener("change",function (){
+            var filelist=Array.from(this.files);
+            for(var i=0;i<filelist.length;i++){
+                addinputfiles(filelist[i]);
+            }
+        })
+
+        droparea.addEventListener("drop",function (e){
+            e.stopPropagation();
+            e.preventDefault();
+            this.style.background = '#ffffff'; //背景色を白に戻す
+            var files = Array.from(e.dataTransfer.files); //ドロップしたファイルを取得
+
+            for(var i=0;i<files.length;i++){
+                addinputfiles(files[i]);
+            }
+        },false)
+
+
+    </script>
+</body>
+</html>
